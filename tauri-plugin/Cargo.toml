@@ -8,7 +8,7 @@ repository.workspace = true
 homepage.workspace = true
 description = "Tauri plugin for Supertonic on-device TTS — synthesize, load models, select voices"
 keywords = ["tts", "text-to-speech", "supertonic", "tauri", "plugin"]
-categories = ["multimedia::audio", "gui::tauri"]
+categories = ["multimedia::audio"]
 links = "tauri-plugin-supertonic"
 
 [build-dependencies]

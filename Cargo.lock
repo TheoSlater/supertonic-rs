@@ -3489,22 +3489,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "13c2bddecc57b384dee18652358fb23172facb8a2c51ccc10d74c157bdea3292"
 
 [[package]]
-name = "supertonic"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "dirs 5.0.1",
- "ndarray",
- "serde",
- "serde_json",
- "supertonic-core",
- "supertonic-model-store",
- "supertonic-ort-backend",
- "tokio",
- "tracing",
-]
-
-[[package]]
 name = "supertonic-core"
 version = "0.1.0"
 dependencies = [
@@ -3551,6 +3535,22 @@ dependencies = [
  "tracing",
  "ureq",
  "zip",
+]
+
+[[package]]
+name = "supertonic-tts"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "dirs 5.0.1",
+ "ndarray",
+ "serde",
+ "serde_json",
+ "supertonic-core",
+ "supertonic-model-store",
+ "supertonic-ort-backend",
+ "tokio",
+ "tracing",
 ]
 
 [[package]]
