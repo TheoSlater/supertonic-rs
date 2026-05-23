@@ -8,7 +8,7 @@ repository.workspace = true
 homepage.workspace = true
 description = "ONNX Runtime backend for Supertonic TTS — loads and runs 4 ONNX sessions"
 keywords = ["tts", "text-to-speech", "supertonic", "onnx", "ort"]
-categories = ["multimedia::audio", "science::speech"]
+categories = ["multimedia::audio"]
 
 [dependencies]
 supertonic-core = { path = "../core" }

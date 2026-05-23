@@ -8,7 +8,7 @@ repository.workspace = true
 homepage.workspace = true
 description = "Engine-agnostic TTS pipeline for Supertonic — text processing, audio encoding, style loading"
 keywords = ["tts", "text-to-speech", "supertonic", "audio", "speech"]
-categories = ["multimedia::audio", "science::speech"]
+categories = ["multimedia::audio"]
 
 [dependencies]
 ndarray = { version = "0.17", features = ["rayon"] }

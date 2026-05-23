@@ -8,7 +8,7 @@ repository.workspace = true
 homepage.workspace = true
 description = "High-level on-device TTS via Supertonic — one-liner synthesize, auto-download models"
 keywords = ["tts", "text-to-speech", "supertonic", "audio", "speech-synthesis"]
-categories = ["multimedia::audio", "science::speech"]
+categories = ["multimedia::audio"]
 
 [dependencies]
 supertonic-core = { path = "../core" }
