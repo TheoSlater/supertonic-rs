@@ -6,7 +6,7 @@ A Rust workspace providing high-quality, on-device text-to-speech via Supertonic
 
 | Crate | Description | crates.io |
 |-------|-------------|-----------|
-| [`supertonic-tts`](supertonic-tts/) | High-level API — one-liner synthesize | [![crates.io](https://img.shields.io/crates/v/supertonic-tts.svg)](https://crates.io/crates/supertonic-tts) |
+| [`st-tts`](supertonic/) | High-level API — one-liner synthesize | [![crates.io](https://img.shields.io/crates/v/st-tts.svg)](https://crates.io/crates/st-tts) |
 | [`supertonic-core`](core/) | Engine-agnostic TTS pipeline (text, audio, style) | [![crates.io](https://img.shields.io/crates/v/supertonic-core.svg)](https://crates.io/crates/supertonic-core) |
 | [`supertonic-ort-backend`](ort-backend/) | ONNX Runtime backend | [![crates.io](https://img.shields.io/crates/v/supertonic-ort-backend.svg)](https://crates.io/crates/supertonic-ort-backend) |
 | [`supertonic-model-store`](model-store/) | Model download & caching from HuggingFace | [![crates.io](https://img.shields.io/crates/v/supertonic-model-store.svg)](https://crates.io/crates/supertonic-model-store) |
@@ -15,7 +15,7 @@ A Rust workspace providing high-quality, on-device text-to-speech via Supertonic
 ## Quick Start
 
 ```rust
-use supertonic_tts::Tts;
+use st_tts::Tts;
 
 // Auto-download model from HuggingFace, then synthesize
 let tts = Tts::new("Supertone/supertonic-3", "M1").await?;
@@ -50,13 +50,13 @@ These crates have inter-dependencies. Publish in this order:
 
 1. `supertonic-core`
 2. `supertonic-ort-backend` + `supertonic-model-store` (parallel)
-3. `supertonic-tts`
+3. `st-tts`
 4. `tauri-plugin-supertonic`
 
 ```bash
 cargo publish -p supertonic-core
 cargo publish -p supertonic-ort-backend
 cargo publish -p supertonic-model-store
-cargo publish -p supertonic-tts
+cargo publish -p st-tts
 cargo publish -p tauri-plugin-supertonic
 ```
