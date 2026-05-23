@@ -11,7 +11,7 @@ keywords = ["tts", "text-to-speech", "supertonic", "model", "huggingface"]
 categories = ["multimedia::audio"]
 
 [dependencies]
-supertonic-core = { path = "../core" }
+supertonic-core = { path = "../core", version = "0.1" }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 sha2 = "0.10"

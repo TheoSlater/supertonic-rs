@@ -11,7 +11,7 @@ keywords = ["tts", "text-to-speech", "supertonic", "onnx", "ort"]
 categories = ["multimedia::audio"]
 
 [dependencies]
-supertonic-core = { path = "../core" }
+supertonic-core = { path = "../core", version = "0.1" }
 ort = { version = "2.0.0-rc.12", features = ["load-dynamic"] }
 ndarray = "0.17"
 anyhow = "1.0"

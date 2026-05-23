@@ -11,9 +11,9 @@ keywords = ["tts", "text-to-speech", "supertonic", "audio", "speech-synthesis"]
 categories = ["multimedia::audio"]
 
 [dependencies]
-supertonic-core = { path = "../core" }
-supertonic-ort-backend = { path = "../ort-backend" }
-supertonic-model-store = { path = "../model-store" }
+supertonic-core = { path = "../core", version = "0.1" }
+supertonic-ort-backend = { path = "../ort-backend", version = "0.1" }
+supertonic-model-store = { path = "../model-store", version = "0.1" }
 ndarray = "0.17"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
