@@ -1,0 +1,11 @@
+{
+  "name": "tauri-plugin-supertonic-api",
+  "version": "0.1.0",
+  "description": "TypeScript bindings for the Supertonic TTS Tauri plugin",
+  "type": "module",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@tauri-apps/api": "^2.0.0"
+  }
+}

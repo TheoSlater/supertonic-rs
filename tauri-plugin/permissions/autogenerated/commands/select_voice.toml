@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-select-voice"
+description = "Enables the select_voice command without any pre-configured scope."
+commands.allow = ["select_voice"]
+
+[[permission]]
+identifier = "deny-select-voice"
+description = "Denies the select_voice command without any pre-configured scope."
+commands.deny = ["select_voice"]

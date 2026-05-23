@@ -1,0 +1,23 @@
+[package]
+name = "supertonic"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "High-level on-device TTS via Supertonic — one-liner synthesize, auto-download models"
+keywords = ["tts", "text-to-speech", "supertonic", "audio", "speech-synthesis"]
+categories = ["multimedia::audio", "science::speech"]
+
+[dependencies]
+supertonic-core = { path = "../core" }
+supertonic-ort-backend = { path = "../ort-backend" }
+supertonic-model-store = { path = "../model-store" }
+ndarray = "0.17"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+dirs = "5"
+tokio = { version = "1", features = ["sync", "fs"] }
+anyhow = "1.0"
+tracing = "0.1"

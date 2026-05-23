@@ -1,0 +1,29 @@
+[package]
+name = "tauri-plugin-supertonic"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+homepage.workspace = true
+description = "Tauri plugin for Supertonic on-device TTS — synthesize, load models, select voices"
+keywords = ["tts", "text-to-speech", "supertonic", "tauri", "plugin"]
+categories = ["multimedia::audio", "gui::tauri"]
+links = "tauri-plugin-supertonic"
+
+[build-dependencies]
+tauri-plugin = { version = "2", features = ["build"] }
+
+[dependencies]
+supertonic-core = { path = "../core" }
+supertonic-ort-backend = { path = "../ort-backend" }
+supertonic-model-store = { path = "../model-store" }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tauri = { version = "2" }
+ndarray = "0.17"
+tokio = { version = "1", features = ["sync"] }
+dirs = "5"
+anyhow = "1.0"
+tracing = "0.1"
+base64 = "0.22"

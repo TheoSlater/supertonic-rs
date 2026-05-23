@@ -1,0 +1,17 @@
+[workspace]
+resolver = "2"
+members = [
+    "core",
+    "ort-backend",
+    "model-store",
+    "tauri-plugin",
+    "supertonic",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+authors = ["Supertonic contributors"]
+repository = "https://github.com/YOUR_USERNAME/supertonic"
+homepage = "https://github.com/YOUR_USERNAME/supertonic"

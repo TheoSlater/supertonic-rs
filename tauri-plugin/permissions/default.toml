@@ -1,0 +1,9 @@
+[default]
+description = "Default permissions for the Supertonic TTS plugin"
+permissions = [
+    "allow-synthesize",
+    "allow-load-model",
+    "allow-list-voices",
+    "allow-select-voice",
+    "allow-get-status",
+]
