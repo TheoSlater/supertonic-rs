@@ -1,5 +1,5 @@
 [package]
-name = "supertonic"
+name = "supertonic-tts"
 version.workspace = true
 edition.workspace = true
 license.workspace = true

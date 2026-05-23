@@ -12,7 +12,7 @@ use supertonic_ort_backend::OrtEngine;
 /// # Examples
 ///
 /// ```ignore
-/// use supertonic::Tts;
+/// use supertonic_tts::Tts;
 ///
 /// // Auto-download model from HuggingFace, then synthesize
 /// let tts = Tts::new("Supertone/supertonic-3", "M1").await?;
