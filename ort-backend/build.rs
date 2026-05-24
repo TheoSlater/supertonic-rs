@@ -85,7 +85,11 @@ fn nuget_runtime_path() -> String {
     } else if target.contains("linux") {
         "runtimes/linux-x64/native/libonnxruntime.so"
     } else if target.contains("apple-darwin") {
-        "runtimes/osx-x64/native/libonnxruntime.dylib"
+        if target.contains("aarch64") {
+            "runtimes/osx-arm64/native/libonnxruntime.dylib"
+        } else {
+            "runtimes/osx-x64/native/libonnxruntime.dylib"
+        }
     } else if target.contains("apple-ios") {
         panic!("iOS not supported with load-dynamic");
     } else {
