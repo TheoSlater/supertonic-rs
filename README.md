@@ -12,6 +12,9 @@ A Rust workspace providing high-quality, on-device text-to-speech via Supertonic
 | [`supertonic-model-store`](model-store/) | Model download & caching from HuggingFace | [![crates.io](https://img.shields.io/crates/v/supertonic-model-store.svg)](https://crates.io/crates/supertonic-model-store) |
 | [`tauri-plugin-supertonic`](tauri-plugin/) | Tauri v2 plugin for desktop apps | [![crates.io](https://img.shields.io/crates/v/tauri-plugin-supertonic.svg)](https://crates.io/crates/tauri-plugin-supertonic) |
 
+## Thank you Traun Leyden for the wiki:
+https://deepwiki.com/TheoSlater/supertonic-rs/1-overview
+
 ## Quick Start
 
 ```rust
