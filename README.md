@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://deepwiki.com/TheoSlater/supertonic-rs"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
+</p>
+
 # supertonic-rs — On-Device Neural TTS for Rust
 
 A Rust workspace providing high-quality, on-device text-to-speech via Supertonic's 99M-parameter model running on ONNX Runtime. No cloud, no API calls, no GPU required.
