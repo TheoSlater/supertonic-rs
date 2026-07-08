@@ -1,0 +1,9 @@
+[package]
+name = "supertonic-cli-synth"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
+st-tts = { path = "../../supertonic" }
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }

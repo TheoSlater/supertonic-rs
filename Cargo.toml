@@ -3,6 +3,7 @@ resolver = "2"
 members = [
     "tauri-plugin",
     "supertonic",
+    "supertonic-cli/native-synth",
 ]
 
 [workspace.package]
