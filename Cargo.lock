@@ -3451,15 +3451,26 @@ name = "st-tts"
 version = "0.1.1"
 dependencies = [
  "anyhow",
+ "async-trait",
  "dirs 5.0.1",
+ "hex",
+ "hound",
  "ndarray",
+ "ort",
+ "rand",
+ "rand_distr",
+ "regex",
+ "reqwest 0.12.28",
  "serde",
  "serde_json",
- "supertonic-core",
- "supertonic-model-store",
- "supertonic-ort-backend",
+ "sha2",
+ "thiserror 2.0.18",
  "tokio",
+ "tokio-stream",
  "tracing",
+ "unicode-normalization",
+ "ureq",
+ "zip",
 ]
 
 [[package]]
@@ -3503,55 +3514,6 @@ name = "subtle"
 version = "2.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "13c2bddecc57b384dee18652358fb23172facb8a2c51ccc10d74c157bdea3292"
-
-[[package]]
-name = "supertonic-core"
-version = "0.1.1"
-dependencies = [
- "anyhow",
- "async-trait",
- "hound",
- "ndarray",
- "rand",
- "rand_distr",
- "regex",
- "serde",
- "serde_json",
- "thiserror 2.0.18",
- "unicode-normalization",
-]
-
-[[package]]
-name = "supertonic-model-store"
-version = "0.1.1"
-dependencies = [
- "anyhow",
- "hex",
- "reqwest 0.12.28",
- "serde",
- "serde_json",
- "sha2",
- "supertonic-core",
- "thiserror 2.0.18",
- "tokio",
- "tokio-stream",
- "tracing",
-]
-
-[[package]]
-name = "supertonic-ort-backend"
-version = "0.1.1"
-dependencies = [
- "anyhow",
- "async-trait",
- "ndarray",
- "ort",
- "supertonic-core",
- "thiserror 2.0.18",
- "tracing",
- "ureq",
- "zip",
-]
 
 [[package]]
 name = "swift-rs"
@@ -3835,9 +3797,7 @@ dependencies = [
  "ndarray",
  "serde",
  "serde_json",
- "supertonic-core",
- "supertonic-model-store",
- "supertonic-ort-backend",
+ "st-tts",
  "tauri",
  "tauri-plugin",
  "tokio",

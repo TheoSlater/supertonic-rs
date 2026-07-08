@@ -1,11 +1,15 @@
+pub mod backend;
+pub mod core;
+pub mod store;
+
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
-use supertonic_core::{
+use crate::backend::OrtEngine;
+pub use crate::core::{
     encode_wav_bytes, load_voice_style, Style, SynthesisResult, TtsEngine, UnicodeProcessor,
 };
-use supertonic_model_store::ModelStore;
-use supertonic_ort_backend::OrtEngine;
+use crate::store::ModelStore;
 
 /// Simple high-level TTS interface.
 ///
@@ -127,4 +131,4 @@ fn load_style(store: &ModelStore, voice_name: &str) -> Result<Style, anyhow::Err
 }
 
 // Re-exports for convenience
-pub use supertonic_core::SynthesisParams;
+pub use crate::core::SynthesisParams;

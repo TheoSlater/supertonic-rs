@@ -1,7 +1,7 @@
-use crate::audio::encode_wav_bytes;
-use crate::engine::{ChunkResult, InferenceEngine, SynthesisParams, SynthesisResult, TensorValue};
-use crate::style::Style;
-use crate::text::{chunk_text, max_chunk_len_for_lang, sample_noisy_latent, UnicodeProcessor};
+use crate::core::audio::encode_wav_bytes;
+use crate::core::engine::{ChunkResult, InferenceEngine, SynthesisParams, SynthesisResult, TensorValue};
+use crate::core::style::Style;
+use crate::core::text::{chunk_text, max_chunk_len_for_lang, sample_noisy_latent, UnicodeProcessor};
 
 use ndarray::{Array, Array3};
 use std::sync::Arc;

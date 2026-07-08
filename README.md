@@ -10,10 +10,7 @@ A Rust workspace providing high-quality, on-device text-to-speech via Supertonic
 
 | Crate | Description | crates.io |
 |-------|-------------|-----------|
-| [`st-tts`](supertonic/) | High-level API — one-liner synthesize | [![crates.io](https://img.shields.io/crates/v/st-tts.svg)](https://crates.io/crates/st-tts) |
-| [`supertonic-core`](core/) | Engine-agnostic TTS pipeline (text, audio, style) | [![crates.io](https://img.shields.io/crates/v/supertonic-core.svg)](https://crates.io/crates/supertonic-core) |
-| [`supertonic-ort-backend`](ort-backend/) | ONNX Runtime backend | [![crates.io](https://img.shields.io/crates/v/supertonic-ort-backend.svg)](https://crates.io/crates/supertonic-ort-backend) |
-| [`supertonic-model-store`](model-store/) | Model download & caching from HuggingFace | [![crates.io](https://img.shields.io/crates/v/supertonic-model-store.svg)](https://crates.io/crates/supertonic-model-store) |
+| [`st-tts`](supertonic/) | High-level API — one-liner synthesize, plus `core`/`backend`/`store` modules for lower-level access | [![crates.io](https://img.shields.io/crates/v/st-tts.svg)](https://crates.io/crates/st-tts) |
 | [`tauri-plugin-supertonic`](tauri-plugin/) | Tauri v2 plugin for desktop apps | [![crates.io](https://img.shields.io/crates/v/tauri-plugin-supertonic.svg)](https://crates.io/crates/tauri-plugin-supertonic) |
 
 ## Thank you Traun Leyden for the wiki:
@@ -53,17 +50,9 @@ new Audio(`data:audio/wav;base64,${wavBase64}`).play();
 
 ## Publishing Order
 
-These crates have inter-dependencies. Publish in this order:
-
-1. `supertonic-core`
-2. `supertonic-ort-backend` + `supertonic-model-store` (parallel)
-3. `st-tts`
-4. `tauri-plugin-supertonic`
+`tauri-plugin-supertonic` depends on `st-tts`. Publish in this order:
 
 ```bash
-cargo publish -p supertonic-core
-cargo publish -p supertonic-ort-backend
-cargo publish -p supertonic-model-store
 cargo publish -p st-tts
 cargo publish -p tauri-plugin-supertonic
 ```

@@ -1,9 +1,6 @@
 [workspace]
 resolver = "2"
 members = [
-    "core",
-    "ort-backend",
-    "model-store",
     "tauri-plugin",
     "supertonic",
 ]

@@ -1,7 +1,7 @@
 use std::sync::Arc;
 
-use supertonic_core::{Style, TtsEngine};
-use supertonic_model_store::ModelStore;
+use st_tts::core::{Style, TtsEngine};
+use st_tts::store::ModelStore;
 use tokio::sync::RwLock;
 
 pub struct TtsState {

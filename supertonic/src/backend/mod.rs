@@ -5,7 +5,7 @@ use ndarray::Array;
 use ort::session::Session;
 use ort::value::Value;
 
-use supertonic_core::{Config, InferenceEngine, TensorValue, load_cfgs};
+use crate::core::{Config, InferenceEngine, TensorValue, load_cfgs};
 
 pub struct OrtEngine {
     dp_session: Mutex<Session>,

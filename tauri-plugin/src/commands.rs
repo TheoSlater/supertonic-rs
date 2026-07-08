@@ -4,10 +4,10 @@ use base64::Engine;
 use serde::Serialize;
 use tauri::ipc::Channel;
 
-use supertonic_model_store::ModelStore;
+use st_tts::store::ModelStore;
 
-use supertonic_core::{SynthesisParams, TtsEngine};
-use supertonic_ort_backend::OrtEngine;
+use st_tts::core::{SynthesisParams, TtsEngine};
+use st_tts::backend::OrtEngine;
 
 use crate::state::TtsState;
 
@@ -49,7 +49,7 @@ pub async fn synthesize(
         .await
         .map_err(|e| e.to_string())?;
 
-    let wav_bytes = supertonic_core::encode_wav_bytes(&result.audio, result.sample_rate)
+    let wav_bytes = st_tts::core::encode_wav_bytes(&result.audio, result.sample_rate)
         .map_err(|e| e.to_string())?;
 
     let wav_base64 = base64::engine::general_purpose::STANDARD.encode(&wav_bytes);
@@ -78,8 +78,8 @@ pub async fn load_model(
     let store = Arc::new(ModelStore::with_cache_root(cache_root, &mid));
     state.set_model_store(store.clone()).await;
 
-    let progress_cb: Arc<dyn Fn(supertonic_model_store::DownloadProgress) + Send + Sync> =
-        Arc::new(move |p: supertonic_model_store::DownloadProgress| {
+    let progress_cb: Arc<dyn Fn(st_tts::store::DownloadProgress) + Send + Sync> =
+        Arc::new(move |p: st_tts::store::DownloadProgress| {
             let evt = ModelProgressEvent {
                 file: p.file,
                 bytes_downloaded: p.bytes_downloaded,
@@ -101,7 +101,7 @@ pub async fn load_model(
         OrtEngine::load(&onnx_dir).map_err(|e: anyhow::Error| e.to_string())?;
 
     let unicode_indexer_path = onnx_dir.join("unicode_indexer.json");
-    let text_processor = supertonic_core::UnicodeProcessor::new(&unicode_indexer_path)
+    let text_processor = st_tts::core::UnicodeProcessor::new(&unicode_indexer_path)
         .map_err(|e: anyhow::Error| e.to_string())?;
 
     let engine = Arc::new(TtsEngine::new(Arc::new(ort_engine), text_processor));
@@ -110,7 +110,7 @@ pub async fn load_model(
     let voice_path = store.resolve_voice_style(&voice);
     if voice_path.exists() {
         let style =
-            supertonic_core::load_voice_style(&[voice_path.to_string_lossy().to_string()])
+            st_tts::core::load_voice_style(&[voice_path.to_string_lossy().to_string()])
                 .map_err(|e: anyhow::Error| e.to_string())?;
         state.set_style(style, voice.clone()).await;
     }
@@ -146,7 +146,7 @@ pub async fn select_voice(
         return Err(format!("Voice '{}' not found", voice_name));
     }
 
-    let style = supertonic_core::load_voice_style(&[voice_path.to_string_lossy().to_string()])
+    let style = st_tts::core::load_voice_style(&[voice_path.to_string_lossy().to_string()])
         .map_err(|e: anyhow::Error| e.to_string())?;
 
     state.set_style(style, voice_name).await;

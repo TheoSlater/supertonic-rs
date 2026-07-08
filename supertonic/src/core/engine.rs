@@ -1,6 +1,6 @@
 use async_trait::async_trait;
 
-use crate::config::Config;
+use crate::core::config::Config;
 
 #[derive(Debug, Clone)]
 pub enum TensorValue {
