@@ -7,7 +7,8 @@ use std::sync::Arc;
 
 use crate::backend::OrtEngine;
 pub use crate::core::{
-    encode_wav_bytes, load_voice_style, Style, SynthesisResult, TtsEngine, UnicodeProcessor,
+    encode_wav_bytes, load_voice_style, ChunkResult, Style, SynthesisResult, TtsEngine,
+    UnicodeProcessor,
 };
 use crate::store::ModelStore;
 
@@ -74,6 +75,24 @@ impl Tts {
         let default_params = SynthesisParams::default();
         let params = params.unwrap_or(&default_params);
         self.engine.synthesize(text, lang, &self.style, params).await
+    }
+
+    /// Synthesize text → PCM chunks delivered as they're generated.
+    ///
+    /// `on_chunk` is called once per text chunk with raw PCM samples,
+    /// so playback can start before the full text is synthesized.
+    pub async fn synthesize_stream(
+        &self,
+        text: &str,
+        lang: &str,
+        params: Option<&SynthesisParams>,
+        on_chunk: impl FnMut(ChunkResult) -> Result<(), anyhow::Error>,
+    ) -> Result<(), anyhow::Error> {
+        let default_params = SynthesisParams::default();
+        let params = params.unwrap_or(&default_params);
+        self.engine
+            .synthesize_stream(text, lang, &self.style, params, on_chunk)
+            .await
     }
 
     /// Synthesize text → WAV bytes (ready to save or stream).

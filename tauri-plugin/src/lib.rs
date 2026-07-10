@@ -14,6 +14,7 @@ pub fn init() -> tauri::plugin::TauriPlugin<tauri::Wry> {
         })
         .invoke_handler(tauri::generate_handler![
             commands::synthesize,
+            commands::synthesize_stream,
             commands::load_model,
             commands::list_voices,
             commands::select_voice,

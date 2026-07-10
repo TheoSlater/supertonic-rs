@@ -355,10 +355,22 @@
           "markdownDescription": "Denies the synthesize command without any pre-configured scope."
         },
         {
-          "description": "Default permissions for the Supertonic TTS plugin\n#### This default permission set includes:\n\n- `allow-synthesize`\n- `allow-load-model`\n- `allow-list-voices`\n- `allow-select-voice`\n- `allow-get-status`",
+          "description": "Enables the synthesize_stream command without any pre-configured scope.",
+          "type": "string",
+          "const": "allow-synthesize-stream",
+          "markdownDescription": "Enables the synthesize_stream command without any pre-configured scope."
+        },
+        {
+          "description": "Denies the synthesize_stream command without any pre-configured scope.",
+          "type": "string",
+          "const": "deny-synthesize-stream",
+          "markdownDescription": "Denies the synthesize_stream command without any pre-configured scope."
+        },
+        {
+          "description": "Default permissions for the Supertonic TTS plugin\n#### This default permission set includes:\n\n- `allow-synthesize`\n- `allow-synthesize-stream`\n- `allow-load-model`\n- `allow-list-voices`\n- `allow-select-voice`\n- `allow-get-status`",
           "type": "string",
           "const": "default",
-          "markdownDescription": "Default permissions for the Supertonic TTS plugin\n#### This default permission set includes:\n\n- `allow-synthesize`\n- `allow-load-model`\n- `allow-list-voices`\n- `allow-select-voice`\n- `allow-get-status`"
+          "markdownDescription": "Default permissions for the Supertonic TTS plugin\n#### This default permission set includes:\n\n- `allow-synthesize`\n- `allow-synthesize-stream`\n- `allow-load-model`\n- `allow-list-voices`\n- `allow-select-voice`\n- `allow-get-status`"
         }
       ]
     }

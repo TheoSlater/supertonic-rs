@@ -1,5 +1,6 @@
 const COMMANDS: &[&str] = &[
     "synthesize",
+    "synthesize_stream",
     "load_model",
     "list_voices",
     "select_voice",

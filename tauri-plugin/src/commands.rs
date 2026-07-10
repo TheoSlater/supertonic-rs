@@ -61,6 +61,64 @@ pub async fn synthesize(
     })
 }
 
+#[derive(Clone, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AudioChunkEvent {
+    /// Raw PCM samples (f32 little-endian), base64-encoded.
+    pub pcm_base64: String,
+    pub sample_rate: u32,
+    pub duration_secs: f32,
+    pub chunk_index: usize,
+    pub is_last: bool,
+}
+
+#[tauri::command]
+pub async fn synthesize_stream(
+    state: tauri::State<'_, TtsState>,
+    text: String,
+    lang: Option<String>,
+    total_step: Option<usize>,
+    speed: Option<f32>,
+    silence_duration: Option<f32>,
+    on_chunk: Channel<AudioChunkEvent>,
+) -> Result<(), String> {
+    let engine = state.get_engine().await.map_err(|e| e.to_string())?;
+    let style = state.get_style().await.map_err(|e| e.to_string())?;
+
+    let mut params = SynthesisParams::default();
+    if let Some(ts) = total_step {
+        params.total_step = ts;
+    }
+    if let Some(sp) = speed {
+        params.speed = sp;
+    }
+    if let Some(sd) = silence_duration {
+        params.silence_duration = sd;
+    }
+
+    let lang = lang.unwrap_or_else(|| "en".to_string());
+    let sample_rate = engine.sample_rate();
+
+    engine
+        .synthesize_stream(&text, &lang, &style, &params, |chunk| {
+            let bytes: Vec<u8> = chunk
+                .audio
+                .iter()
+                .flat_map(|s| s.to_le_bytes())
+                .collect();
+            on_chunk.send(AudioChunkEvent {
+                pcm_base64: base64::engine::general_purpose::STANDARD.encode(&bytes),
+                sample_rate,
+                duration_secs: chunk.duration_secs,
+                chunk_index: chunk.chunk_index,
+                is_last: chunk.is_last,
+            })?;
+            Ok(())
+        })
+        .await
+        .map_err(|e| e.to_string())
+}
+
 #[tauri::command]
 pub async fn load_model(
     state: tauri::State<'_, TtsState>,

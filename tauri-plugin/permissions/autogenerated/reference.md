@@ -5,6 +5,7 @@ Default permissions for the Supertonic TTS plugin
 #### This default permission set includes the following:
 
 - `allow-synthesize`
+- `allow-synthesize-stream`
 - `allow-load-model`
 - `allow-list-voices`
 - `allow-select-voice`
@@ -145,6 +146,32 @@ Enables the synthesize command without any pre-configured scope.
 <td>
 
 Denies the synthesize command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`supertonic:allow-synthesize-stream`
+
+</td>
+<td>
+
+Enables the synthesize_stream command without any pre-configured scope.
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+`supertonic:deny-synthesize-stream`
+
+</td>
+<td>
+
+Denies the synthesize_stream command without any pre-configured scope.
 
 </td>
 </tr>
