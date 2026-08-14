@@ -64,6 +64,21 @@ impl UnicodeProcessor {
     }
 }
 
+/// Normalise `text` and, unless `lang` is empty, wrap it in `<lang>` tokens.
+///
+/// An empty `lang` skips the tokens. They are a feature of the multilingual models, and
+/// the English-only Supertonic v1 (`split: opensource-en`) was not trained on them: its
+/// `unicode_indexer.json` has no entry for `<`, `>` or `/`, so each one becomes -1 and an
+/// out-of-range id reaches the embedding lookup at the start of every utterance. The
+/// audible result is that the opening words are mangled, with "Question comes through"
+/// coming out as "can quumps through".
+///
+/// The Python package draws the same line in `TTS.synthesize`, which sets
+/// `effective_lang = None` for a non-multilingual model with the comment "Don't add
+/// language tokens for v1", and in `_preprocess_text`, whose `lang` is `Optional[str]`.
+///
+/// Empty was previously rejected by `is_valid_lang`, so no working caller passes it and
+/// this changes no existing behaviour.
 pub fn preprocess_text(text: &str, lang: &str) -> Result<String, anyhow::Error> {
     let mut text: String = text.nfkd().collect();
 
@@ -141,11 +156,12 @@ pub fn preprocess_text(text: &str, lang: &str) -> Result<String, anyhow::Error> 
         }
     }
 
-    if !is_valid_lang(lang) {
-        anyhow::bail!("Invalid language: {}. Available: {:?}", lang, AVAILABLE_LANGS);
+    if !lang.is_empty() {
+        if !is_valid_lang(lang) {
+            anyhow::bail!("Invalid language: {}. Available: {:?}", lang, AVAILABLE_LANGS);
+        }
+        text = format!("<{}>{}</{}>", lang, text, lang);
     }
-
-    text = format!("<{}>{}</{}>", lang, text, lang);
 
     Ok(text)
 }
@@ -410,6 +426,21 @@ mod tests {
     fn test_preprocess_text_adds_lang_tags() {
         let result = preprocess_text("Hello.", "en").unwrap();
         assert_eq!(result, "<en>Hello.</en>");
+    }
+
+    #[test]
+    fn test_preprocess_text_without_lang_adds_no_tags() {
+        // What the English-only v1 model needs: its indexer maps `<`, `>` and `/` to -1,
+        // so the tokens become out-of-range ids at the start of every utterance.
+        let result = preprocess_text("Hello.", "").unwrap();
+        assert_eq!(result, "Hello.");
+    }
+
+    #[test]
+    fn test_preprocess_text_without_lang_still_normalises() {
+        // Skipping the tokens must not skip the rest of the preprocessing.
+        let result = preprocess_text("Hi 😊", "").unwrap();
+        assert_eq!(result, "Hi.");
     }
 
     #[test]
